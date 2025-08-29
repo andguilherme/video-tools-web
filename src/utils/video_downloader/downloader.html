@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader de Vídeos do YouTube</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎥 Downloader de Vídeos</h1>
+            <p>Baixe vídeos do YouTube e outras plataformas</p>
+        </header>
+
+        <main>
+            <form action="download.php" method="POST" class="download-form">
+                <div class="form-group">
+                    <label for="video_url">URL do Vídeo:</label>
+                    <input type="url" id="video_url" name="video_url" placeholder="https://www.youtube.com/watch?v=..."
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="format">Formato de Download:</label>
+                    <select id="format" name="format">
+                        <option value="best">Melhor Qualidade (Vídeo + Áudio)</option>
+                        <option value="worst">Menor Qualidade (Vídeo + Áudio)</option>
+                        <option value="bestvideo">Melhor Qualidade (Apenas Vídeo)</option>
+                        <option value="bestaudio">Melhor Qualidade (Apenas Áudio)</option>
+                        <option value="mp4">MP4 (Vídeo)</option>
+                        <option value="mp3">MP3 (Áudio)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quality">Qualidade do Vídeo:</label>
+                    <select id="quality" name="quality">
+                        <option value="">Automática</option>
+                        <option value="720">720p (HD)</option>
+                        <option value="480">480p</option>
+                        <option value="360">360p</option>
+                        <option value="240">240p</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="audio_only" name="audio_only" value="1">
+                    <label for="audio_only">Baixar apenas áudio (MP3)</label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="get_info" name="get_info" value="1">
+                    <label for="get_info">Apenas obter informações do vídeo (sem baixar)</label>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Baixar Vídeo</span>
+                        <span class="btn-loading" style="display: none;">Processando...</span>
+                    </button>
+                    <a href="..//index.php" class="btn">← Voltar ao Menu</a>
+                </div>
+
+
+            </form>
+
+            <div id="result" class="result-container" style="display: none;">
+                <!-- Resultado será exibido aqui -->
+            </div>
+        </main>
+
+        <footer>
+            <p>⚠️ <strong>Aviso:</strong> Respeite os direitos autorais e termos de uso das plataformas.</p>
+        </footer>
+    </div>
+
+    <script src="../js/loading.js"></script>
+</body>
+
+</html>
