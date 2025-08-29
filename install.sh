@@ -53,22 +53,26 @@ PROJECT_DIR=$(pwd )
 PROJECT_NAME=$(basename "$PROJECT_DIR")
 UPLOADS_DIR="${PROJECT_DIR}/uploads"
 OUTPUTS_DIR="${PROJECT_DIR}/public/outputs"
+DOWNLOAD_DIR="${PROJECT_DIR}/src/utils/video_downloader/outputs"
 APACHE_USER="www-data"
 SUDO_USER_NAME=${SUDO_USER:-$(whoami)}
 
 print_message $YELLOW "-> Configurando permissões das pastas do projeto..."
 mkdir -p $UPLOADS_DIR
 mkdir -p $OUTPUTS_DIR
+mkdir -p $DOWNLOAD_DIR
 
 print_message $YELLOW "-> Adicionando o usuário '${SUDO_USER_NAME}' ao grupo '${APACHE_USER}'..."
 usermod -a -G $APACHE_USER $SUDO_USER_NAME
 
 chown -R $SUDO_USER_NAME:$APACHE_USER $UPLOADS_DIR
 chown -R $SUDO_USER_NAME:$APACHE_USER $OUTPUTS_DIR
+chown -R $SUDO_USER_NAME:$APACHE_USER $DOWNLOAD_DIR
 
 print_message $YELLOW "-> Aplicando permissões 2775 (SGID) para colaboração..."
 chmod -R 2775 $UPLOADS_DIR
 chmod -R 2775 $OUTPUTS_DIR
+chmod -R 2775 $DOWNLOAD_DIR
 
 # --- PASSO 5: Deploy do Projeto no Apache ---
 APACHE_ROOT="/var/www/html"
